@@ -55,7 +55,7 @@ public class FirstStep {
     public int min(int[] array){
         int res = Integer.MAX_VALUE;
         for (int i : array) {
-            res = Math.min(res, i);
+            res = res <= i ? res : i;
         }
         return res;
     }
@@ -63,7 +63,7 @@ public class FirstStep {
     public int max(int[] array){
         int res = Integer.MIN_VALUE;
         for (int i : array) {
-            res = Math.max(res, i);
+            res = res >= i ? res : i;
         }
         return res;
     }
@@ -122,9 +122,7 @@ public class FirstStep {
     public int sum(int[][] matrix){
         int sum = 0;
         for (int[] row : matrix) {
-            for (int i : row) {
-                sum += i;
-            }
+            sum += sum(row);
         }
         return sum;
     }
@@ -132,7 +130,8 @@ public class FirstStep {
     public int max(int[][] matrix){
         int max = Integer.MIN_VALUE;
         for (int[] row : matrix) {
-            max = Math.max(max, max(row));
+            int maxInRow = max(row);
+            max = max >= maxInRow ? max : maxInRow;
         }
         return max;
     }
@@ -140,7 +139,7 @@ public class FirstStep {
     public int diagonalMax(int[][] matrix){
         int max = Integer.MIN_VALUE;
         for (int i = 0; i < matrix.length; i++) {
-            max = Math.max(max, matrix[i][i]);
+            max = max >= matrix[i][i] ? max : matrix[i][i];
         }
         return max;
     }
